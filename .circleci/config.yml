@@ -10,7 +10,7 @@ jobs:
       - run: echo "Trying out workspaces" > my_workspace/echo-output
       - persist_to_workspace:
           #Absolute path, or relative path from working dir
-	  root: my_workspace
+          root: my_workspace
           #Must berelative path from root
           paths:
             - echo-output
@@ -21,13 +21,13 @@ jobs:
       - checkout
       - run: echo "A more familiar hi"
       - attach_workspace:
-	  # Must be absolute path or relative path from working dir
+          # Must be absolute path or relative path from working dir
           at: my_workspace
       - run: |
           if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
             echo "It worked!";
           else
-	    echo "Nope!"; exit 1
+            echo "Nope!"; exit 1
           fi
 workflows:
   version: 2
@@ -35,5 +35,5 @@ workflows:
     jobs:
       - one
       - two:
-	  requires:
+          requires:
             - one
